@@ -59,3 +59,21 @@ t3ProjectTreeNode * t3ProjectTreeNode::rebuildFromDB()
     populateChildrenFromQuerry(root,query);
     return root;
 }
+
+t3ProjectTreeNode * t3ProjectTreeNode::getChild(int index)
+{
+    if (0 <= index && index < _children.size())
+    {
+        return _children[index];
+    }
+
+    return NULL;
+}
+
+int t3ProjectTreeNode::getRow()
+{
+    if(_parent)
+        return _parent->_children.indexOf(this);
+
+    return 0;
+}

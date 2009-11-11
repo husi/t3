@@ -18,6 +18,10 @@ public:
     virtual ~t3ProjectTreeNode();
     QString getName() { return _name;}
     QString getDescription() { return _description;}
+    t3ProjectTreeNode * getChild(int index);
+    int getChildCount() {return _children.size();}
+    t3ProjectTreeNode * getParent() {return _parent;}
+    int getRow();
 
 private:
     t3ProjectTreeNode();

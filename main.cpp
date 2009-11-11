@@ -27,8 +27,6 @@ int main(int argc, char *argv[])
 
     qDebug() << "DB Initialized";
 
-    t3ProjectTreeNode::rebuildFromDB();
-
     /*Create the main window*/
     MainWindow w;
     w.show();
