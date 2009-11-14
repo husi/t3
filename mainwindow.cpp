@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include "t3projecttreemodel.h"
+#include "t3systemtray.h"
 
 #include <QDebug>
 
@@ -15,6 +16,9 @@ MainWindow::MainWindow(QWidget *parent) :
     t3ProjectTreeModel *model = new t3ProjectTreeModel(this);
     qDebug() << "associating the model with view";
     ui->ProjectsTree->setModel(model);
+    qDebug() << "initializing tray icon";
+    t3SystemTray * tray = new t3SystemTray(model,this);
+
 
 }
 

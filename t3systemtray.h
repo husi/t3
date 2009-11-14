@@ -5,21 +5,23 @@
 #include <QSystemTrayIcon>
 #include <QMenu>
 
-#include "t3projecttreenode.h"
+#include "t3projecttreemodel.h"
 
 class t3SystemTray : public QObject
 {
     Q_OBJECT
 
 public:
-    t3SystemTray(QObject *parent_, t3ProjectTreeNode * root_);
+    t3SystemTray(t3ProjectTreeModel * model_, QObject *parent_=0);
 
 private:
-    QMenu * createMenu(t3ProjectTreeNode * root_);
+    QMenu * createProjectSelectorMenu();
 
 private:
     QMenu * _trayMenu;
     QSystemTrayIcon * _trayIcon;
+    QMenu * _projectSelectorMenu;
+    t3ProjectTreeModel _model;
 };
 
 #endif // T3SYSTEMTRAY_H

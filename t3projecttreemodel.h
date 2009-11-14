@@ -4,8 +4,16 @@
 #include <QAbstractItemModel>
 #include <t3projecttreenode.h>
 
+namespace t3
+{
+    enum dataRole{
+        IdRole = Qt::UserRole
+    };
+}
+
 class t3ProjectTreeModel : public QAbstractItemModel
 {
+
 public:
     t3ProjectTreeModel(QObject * parent_);
     ~t3ProjectTreeModel();
