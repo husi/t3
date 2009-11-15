@@ -15,7 +15,7 @@ class t3ProjectTreeModel : public QAbstractItemModel
 {
 
 public:
-    t3ProjectTreeModel(QObject * parent_);
+    t3ProjectTreeModel(QObject * parent_=0);
     ~t3ProjectTreeModel();
 
     QModelIndex index(int row_,int column_,const QModelIndex &parent_) const;
