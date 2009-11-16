@@ -17,7 +17,7 @@ public:
 
 private:
     QMenu * createProjectSelectorMenu();
-    void populateMenu(QMenu * menu_, const QModelIndex &index_);
+    void populateMenu(QMenu * menu_, QActionGroup * actionGroup_, const QModelIndex &index_);
 
 private:
     QMenu * _trayMenu;

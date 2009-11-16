@@ -1,4 +1,5 @@
 #include "t3systemtray.h"
+#include "t3projecttimer.h"
 #include <QApplication>
 #include <QStyle>
 #include <QDebug>
@@ -23,13 +24,19 @@ t3SystemTray::~t3SystemTray()
 QMenu * t3SystemTray::createProjectSelectorMenu()
 {
     QMenu * menu = new QMenu("Projects");
+    QActionGroup * actiongroup =  new QActionGroup(menu);
 
-    populateMenu(menu,QModelIndex());
+    populateMenu(menu,actiongroup,QModelIndex());
+
+    //TODO: the timer should be a singleton like something and not owned by the systray
+    t3ProjectTimer * timer = new t3ProjectTimer(this);
+
+    connect(actiongroup,SIGNAL(triggered(QAction*)),timer,SLOT(startProjectTimer(QAction*)));
 
     return menu;
 }
 
-void t3SystemTray::populateMenu(QMenu * menu_, const QModelIndex &index)
+void t3SystemTray::populateMenu(QMenu * menu_, QActionGroup * actionGroup_, const QModelIndex &index)
 {
     int numrows = _model->rowCount(index);
     if(numrows < 1)
@@ -45,9 +52,11 @@ void t3SystemTray::populateMenu(QMenu * menu_, const QModelIndex &index)
         {
              QMenu *projectmenu = new QMenu(_model->data(projectindex,Qt::DisplayRole).toString());
              menu_->addMenu(projectmenu);
-             populateMenu(projectmenu,projectindex);
+             populateMenu(projectmenu,actionGroup_,projectindex);
         } else {
-            menu_->addAction(_model->data(projectindex,Qt::DisplayRole).toString());
+            QAction * action = new QAction(_model->data(projectindex,Qt::DisplayRole).toString(),actionGroup_);
+            action->setData(_model->data(projectindex,t3::IdRole));
+            menu_->addAction(action);
         }
     }
 }

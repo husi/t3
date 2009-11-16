@@ -8,9 +8,11 @@ SOURCES += main.cpp \
     mainwindow.cpp \
     t3projecttreenode.cpp \
     t3projecttreemodel.cpp \
-    t3systemtray.cpp
+    t3systemtray.cpp \
+    t3projecttimer.cpp
 HEADERS += mainwindow.h \
     t3projecttreenode.h \
     t3projecttreemodel.h \
-    t3systemtray.h
+    t3systemtray.h \
+    t3projecttimer.h
 FORMS += mainwindow.ui

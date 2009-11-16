@@ -17,9 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     qDebug() << "associating the model with view";
     ui->ProjectsTree->setModel(model);
     qDebug() << "initializing tray icon";
-    t3SystemTray * tray = new t3SystemTray(model,this);
-
-
+    new t3SystemTray(model,this);
 }
 
 MainWindow::~MainWindow()
