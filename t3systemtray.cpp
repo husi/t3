@@ -3,6 +3,7 @@
 #include <QApplication>
 #include <QStyle>
 #include <QDebug>
+#include <QIcon>
 
 t3SystemTray::t3SystemTray( t3ProjectTreeModel * model_, QObject *parent_) :
         QObject(parent_),
@@ -12,7 +13,7 @@ t3SystemTray::t3SystemTray( t3ProjectTreeModel * model_, QObject *parent_) :
     _trayMenu = new QMenu();
     _trayMenu->addMenu(createProjectSelectorMenu());
     _trayIcon->setContextMenu(_trayMenu);
-    _trayIcon->setIcon(QApplication::style()->standardIcon(QStyle::SP_MediaPlay));
+    _trayIcon->setIcon(QIcon(":/icons//clock.svg"));
     _trayIcon->setVisible(true);
 }
 

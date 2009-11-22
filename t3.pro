@@ -16,3 +16,4 @@ HEADERS += mainwindow.h \
     t3systemtray.h \
     t3projecttimer.h
 FORMS += mainwindow.ui
+RESOURCES += t3resources.qrc
