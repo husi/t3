@@ -89,7 +89,11 @@ QVariant t3ProjectTreeModel::data(const QModelIndex &index_,int role_) const
         default: {}
         }
     }
-
+    if(t3::IdRole == role_)
+    {
+        t3ProjectTreeNode * node = static_cast<t3ProjectTreeNode *>(index_.internalPointer());
+        return node->getId();
+    }
     return QVariant();
 }
 
