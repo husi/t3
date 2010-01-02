@@ -46,7 +46,7 @@ void t3ProjectTreeNode::populateChildrenFromQuerry(t3ProjectTreeNode * node_, QS
 void t3ProjectTreeNode::populateChildrenFromDB(t3ProjectTreeNode * node)
 {
     QSqlQuery query;
-    query.prepare("SELECT Id,Name,Description FROM Projects where Parent=?");
+    query.prepare("SELECT Id,Name,Description FROM Projects WHERE Deleted IS NULL AND Parent=?");
     query.addBindValue(node->_id);
     query.exec();
     populateChildrenFromQuerry(node,query);
@@ -55,7 +55,7 @@ void t3ProjectTreeNode::populateChildrenFromDB(t3ProjectTreeNode * node)
 t3ProjectTreeNode * t3ProjectTreeNode::rebuildFromDB()
 {
     t3ProjectTreeNode * root = new t3ProjectTreeNode();
-    QSqlQuery query("SELECT Id,Name,Description FROM Projects where Parent ISNULL;");
+    QSqlQuery query("SELECT Id,Name,Description FROM Projects WHERE Deleted IS NULL AND Parent IS NULL;");
     populateChildrenFromQuerry(root,query);
     return root;
 }

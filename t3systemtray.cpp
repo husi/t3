@@ -33,6 +33,7 @@ QMenu * t3SystemTray::createProjectSelectorMenu()
     t3ProjectTimer * timer = new t3ProjectTimer(this);
 
     connect(actiongroup,SIGNAL(triggered(QAction*)),timer,SLOT(startProjectTimer(QAction*)));
+    connect(qApp,SIGNAL(aboutToQuit()),timer,SLOT(stopProjectTimer()));
 
     return menu;
 }

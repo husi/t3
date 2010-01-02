@@ -14,14 +14,23 @@ public:
 
 public slots:
     void startProjectTimer(QAction * action_);
+    void stopProjectTimer();
 
 protected:
     void timerEvent(QTimerEvent * event_);
+    void updateRecord();
+    void updateRecord(QTime elapsed_);
+    void closeTiming();
 
 private:
     QAction * _currentAction;
     QString _originalText;
     QTime _time;
+
+    int _secTimer;
+    int _minuteTimer;
+    int _rowId;
+
 };
 
 #endif // T3PROJECTTIMER_H
