@@ -30,11 +30,6 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="Data">
-       <attribute name="title">
-        <string>Data</string>
-       </attribute>
-      </widget>
      </widget>
     </item>
    </layout>
@@ -45,7 +40,7 @@
      <x>0</x>
      <y>0</y>
      <width>600</width>
-     <height>25</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

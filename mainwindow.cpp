@@ -3,14 +3,19 @@
 
 #include "t3projecttreemodel.h"
 #include "t3systemtray.h"
+#include "t3sqlview.h"
+#include "t3datatabwidget.h"
 
 #include <QDebug>
+#include <QPushButton>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    ui->tabWidget->addTab(new t3DataTabWidget(),"Data");
 
     qDebug() << "Seting up the model";
     t3ProjectTreeModel *model = new t3ProjectTreeModel(this);
@@ -36,3 +41,4 @@ void MainWindow::changeEvent(QEvent *e)
         break;
     }
 }
+
