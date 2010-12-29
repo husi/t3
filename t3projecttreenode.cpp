@@ -1,6 +1,7 @@
 #include "t3projecttreenode.h"
 #include <QVariant>
 #include <QDebug>
+#include <QSqlError>
 
 
 t3ProjectTreeNode::t3ProjectTreeNode(int id_, QString name_, QString description_, t3ProjectTreeNode * parent_) :
@@ -76,4 +77,29 @@ int t3ProjectTreeNode::getRow()
         return _parent->_children.indexOf(this);
 
     return 0;
+}
+
+
+void t3ProjectTreeNode::setName(QString name_)
+{
+    _name = name_;
+
+    //update db
+    QSqlQuery query;
+    query.prepare("UPDATE Projects Set Name= ? where Id = ?");
+    query.addBindValue(_name);
+    query.addBindValue(_id);
+    query.exec();
+}
+
+void t3ProjectTreeNode::setDescription(QString description_)
+{
+    _description = description_;
+
+    //update db
+    QSqlQuery query;
+    query.prepare("UPDATE Projects Set Description = ? where Id = ?");
+    query.addBindValue(_description);
+    query.addBindValue(_id);
+    query.exec();
 }

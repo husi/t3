@@ -75,7 +75,7 @@ QVariant t3ProjectTreeModel::data(const QModelIndex &index_,int role_) const
         return QVariant();
     }
 
-    if(Qt::DisplayRole == role_)
+    if(Qt::DisplayRole == role_ || Qt::EditRole == role_)
     {
         t3ProjectTreeNode * node = static_cast<t3ProjectTreeNode *>(index_.internalPointer());
         switch(index_.column())
@@ -104,7 +104,7 @@ Qt::ItemFlags t3ProjectTreeModel::flags(const QModelIndex &index_) const
         return 0;
     }
 
-    return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+    return Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
 }
 
 QVariant t3ProjectTreeModel::headerData(int section_, Qt::Orientation orientation_, int role_) const
@@ -121,4 +121,32 @@ QVariant t3ProjectTreeModel::headerData(int section_, Qt::Orientation orientatio
     }
 
     return QVariant();
+}
+
+bool t3ProjectTreeModel::insertRow(int row_, const QModelIndex &parent_)
+{
+    return false;
+}
+
+bool t3ProjectTreeModel::setData(const QModelIndex &index_, const QVariant &value_, int role_)
+{
+    if(Qt::EditRole != role_ || !index_.isValid())
+        return false;
+
+    t3ProjectTreeNode * node = static_cast<t3ProjectTreeNode *>(index_.internalPointer());
+
+    switch(index_.column())
+    {
+    case 0:
+        node->setName(value_.toString());
+        break;
+    case 1:
+        node->setDescription(value_.toString());
+        break;
+    default:
+        return false;
+    }
+
+    emit dataChanged(index_,index_);
+    return true;
 }

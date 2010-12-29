@@ -23,6 +23,8 @@ public:
     int getChildCount() {return _children.size();}
     t3ProjectTreeNode * getParent() {return _parent;}
     int getRow();
+    void setName(QString name_);
+    void setDescription(QString description_);
 
 private:
     t3ProjectTreeNode();

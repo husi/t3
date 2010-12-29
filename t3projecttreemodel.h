@@ -28,6 +28,9 @@ public:
     int columnCount(const QModelIndex & /*parent_*/) const {return 2;}
     int rowCount(const QModelIndex &parentS_) const;
 
+    bool insertRow(int row_, const QModelIndex &parent_);
+    bool setData(const QModelIndex &index_, const QVariant &value_, int role_);
+
 private:
     t3ProjectTreeNode * _root;
 };
